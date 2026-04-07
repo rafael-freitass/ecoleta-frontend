@@ -1,15 +1,16 @@
 import { View } from "react-native";
 import { Slot } from "expo-router";
+import { styles } from "./styles"
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export default function Layout() {
   return (
-    <View>
+    <View style={styles.container}>
       <Header />
 
-      <View>
+      <View style={styles.content}>
         <Slot />
       </View>
 
@@ -17,3 +18,4 @@ export default function Layout() {
     </View>
   );
 }
+
