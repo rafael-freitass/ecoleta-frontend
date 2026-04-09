@@ -27,12 +27,13 @@ export default function SelecionarLixo() {
 
           <View style={style.grid}>
             {category.items.map((item) => (
-                <ProductCard
-                  label={item.label}
-                  icon={item.icon}
-                  selected={selected === item.id}
-                  onPress={() => setSelected(item.id)}
-                />
+              <ProductCard
+                key={item.id}
+                label={item.label}
+                icon={item.icon}
+                selected={selected === item.id}
+                onPress={() => setSelected(item.id)}
+              />
             ))}
           </View>
         </View>
