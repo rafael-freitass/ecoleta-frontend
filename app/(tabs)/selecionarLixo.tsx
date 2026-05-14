@@ -2,10 +2,11 @@ import { View, Text, ScrollView } from "react-native";
 import { useState } from "react";
 import ProductCard from "@/components/ProductCard";
 import { products } from "@/utils/products";
+import { useProduct } from "@/context/ProductContext";
 import { style } from "./style";
 
 export default function SelecionarLixo() {
-  const [selected, setSelected] = useState<string | null>(null);
+  const { selectedProduct, setSelectedProduct } = useProduct();
 
   return (
     <ScrollView
@@ -31,8 +32,8 @@ export default function SelecionarLixo() {
                 key={item.id}
                 label={item.label}
                 icon={item.icon}
-                selected={selected === item.id}
-                onPress={() => setSelected(item.id)}
+                selected={selectedProduct?.id === item.id}
+                onPress={() => setSelectedProduct({id: item.id, label: item.label })}
               />
             ))}
           </View>

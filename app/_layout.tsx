@@ -1,14 +1,25 @@
 import { View } from "react-native";
 import { Slot } from "expo-router";
 import { styles } from "./styles"
+import { ProductProvider, useProduct } from "@/context/ProductContext";
 
 import Header from "@/components/Header";
+import SelecionadoHeader from "@/components/ProdutoSelecionadoHeader";
 import Footer from "@/components/Footer";
 
-export default function Layout() {
+function LayoutContent() {
+  const { selectedProduct } = useProduct();
+
   return (
     <View style={styles.container}>
-      <Header />
+      {selectedProduct ? (
+        <SelecionadoHeader 
+          produto={selectedProduct.label} 
+          pontos={6}
+        />
+      ) : (
+        <Header />
+      )}
 
       <View style={styles.content}>
         <Slot />
@@ -19,3 +30,10 @@ export default function Layout() {
   );
 }
 
+export default function Layout() {
+  return (
+    <ProductProvider>
+      <LayoutContent />
+    </ProductProvider>
+  );
+}
