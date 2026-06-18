@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { WebView } from 'react-native-webview';
 import * as Location from 'expo-location';
-import SelecionadoHeader from "@/components/ProdutoSelecionadoHeader";
 
 export default function Mapa() {
   const [location, setLocation] =

@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "axios": "^1.18.0",
     "babel-plugin-module-resolver": "^5.0.3",
     "expo": "^55.0.12",
     "expo-location": "~55.1.10",
