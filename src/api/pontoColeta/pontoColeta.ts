@@ -8,7 +8,7 @@ export type Ponto = {
   latitude: number;
   longitude: number;
   horario_funcionamento: string;
-  tipo_lixo_coletado: string;
+  tipo_lixo_coletado: string[];
   tipo_ponto: string;
 };
 
