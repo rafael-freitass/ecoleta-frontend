@@ -1,6 +1,6 @@
 import { View } from "react-native";
 import { Slot } from "expo-router";
-import { styles } from "./styles"
+import { style } from "./style"
 import { ProductProvider, useProduct } from "@/context/ProductContext";
 
 import Header from "@/components/Header";
@@ -11,7 +11,7 @@ function LayoutContent() {
   const { selectedProduct } = useProduct();
 
   return (
-    <View style={styles.container}>
+    <View style={style.container}>
       {selectedProduct ? (
         <SelecionadoHeader 
           produto={selectedProduct.label} 
@@ -21,7 +21,7 @@ function LayoutContent() {
         <Header />
       )}
 
-      <View style={styles.content}>
+      <View style={style.content}>
         <Slot />
       </View>
 

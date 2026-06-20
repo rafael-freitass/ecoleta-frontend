@@ -1,5 +1,4 @@
 import { View, Text, ScrollView } from "react-native";
-import { useState } from "react";
 import ProductCard from "@/components/ProductCard";
 import { products } from "@/utils/products";
 import { useProduct } from "@/context/ProductContext";
@@ -33,7 +32,7 @@ export default function SelecionarLixo() {
                 label={item.label}
                 icon={item.icon}
                 selected={selectedProduct?.id === item.id}
-                onPress={() => setSelectedProduct({id: item.id, label: item.label })}
+                onPress={() => setSelectedProduct({ id: item.id, label: item.label, tipo: item.tipo })}
               />
             ))}
           </View>

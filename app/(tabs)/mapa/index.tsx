@@ -3,13 +3,15 @@ import { WebView } from 'react-native-webview';
 import * as Location from 'expo-location';
 import { useAssets } from 'expo-asset';
 
-import { gerarMarcadores } from "../../src/utils/mapUtils";
-import { buscarTodosPontos, Ponto } from "../../src/api/pontoColeta/pontoColeta";
-import { iconesMarcador } from "../../src/components/MapMaker/mapMarker";
+import { useProduct } from "@/context/ProductContext";
+import { gerarMarcadores } from "../../../src/utils/mapUtils";
+import { buscarTodosPontos, buscarPontoPorTipo, Ponto } from "../../../src/api/pontoColeta/pontoColeta";
+import { iconesMarcador } from "../../../src/components/MapMaker/mapMarker";
 
 export default function Mapa() {
   const [location, setLocation] = useState<Location.LocationObjectCoords | null>(null);
   const [pontos, setPontos] = useState<Ponto[]>([]);
+  const { selectedProduct } = useProduct();
 
   const [assets] = useAssets([
     iconesMarcador.ecoponto,
@@ -19,11 +21,21 @@ export default function Mapa() {
 
   useEffect(() => {
     carregarDados();
-  }, []);
+  }, [selectedProduct]);
 
   async function carregarDados() {
     await getLocation();
-    const dados = await buscarTodosPontos();
+
+    let dados;
+
+    if(selectedProduct){
+      dados = await buscarPontoPorTipo(
+        selectedProduct.tipo
+      );
+    } else {
+      dados = await buscarTodosPontos();
+    }
+
     setPontos(dados);
   }
 

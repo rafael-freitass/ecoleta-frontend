@@ -24,6 +24,12 @@ export async function buscarPontoPorId(id: number): Promise<Ponto> {
   return response.data;
 }
 
+export async function buscarPontoPorTipo(tipo: string): Promise<Ponto[]> {
+  const response = await api.get<Ponto[]>(`/pontos-coleta/tipo/${tipo}`);
+
+  return response.data;
+}
+
 export async function criarPonto(ponto: Omit<Ponto,"id">){
   const response = await api.post("/pontos-coleta", ponto);
   

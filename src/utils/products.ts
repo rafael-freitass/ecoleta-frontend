@@ -4,30 +4,78 @@ export const products = [
   {
     category: "Dispositivos Móveis",
     items: [
-      { id: "smartphone", label: "Smartphone", icon: Smartphone },
-      { id: "tablet", label: "Tablet", icon: Tablet },
+      { 
+        id: "smartphone",
+        label: "Smartphone",
+        tipo: "Celulares",
+        icon: Smartphone
+      },
+      { 
+        id: "tablet",
+        label: "Tablet",
+        tipo: "Celulares",
+        icon: Tablet
+      },
     ],
   },
+
   {
     category: "Computadores",
     items: [
-      { id: "notebook", label: "Notebook/Laptop", icon: Laptop },
-      { id: "desktop", label: "Computador Desktop", icon: Monitor },
+      { 
+        id: "notebook",
+        label: "Notebook/Laptop",
+        tipo: "Computadores",
+        icon: Laptop
+      },
+      { 
+        id: "desktop",
+        label: "Computador Desktop",
+        tipo: "Computadores",
+        icon: Monitor
+      },
     ],
   },
+
   {
     category: "Eletrodomésticos",
     items: [
-      { id: "tv", label: "Televisão", icon: Tv },
+      { 
+        id: "tv",
+        label: "Televisão",
+        tipo: "Televisores",
+        icon: Tv
+      },
     ],
   },
+
   {
     category: "Periféricos",
     items: [
-      { id: "monitor", label: "Monitor", icon: MonitorCheck },
-      { id: "keyboard", label: "Teclado", icon: Keyboard },
-      { id: "mouse", label: "Mouse", icon: Mouse },
-      { id: "printer", label: "Impressora", icon: Printer },
+      { 
+        id: "monitor",
+        label: "Monitor",
+        tipo: "Monitores",
+        icon: MonitorCheck
+      },
+      { 
+        id: "keyboard",
+        label: "Teclado",
+        tipo: "Periféricos",
+        icon: Keyboard
+      },
+      { 
+        id: "mouse",
+        label: "Mouse",
+        tipo: "Periféricos",
+        icon: Mouse
+      },
+      { 
+        id: "printer",
+        label: "Impressora",
+        tipo: "Impressoras",
+        icon: Printer
+      },
     ],
   },
 ];
