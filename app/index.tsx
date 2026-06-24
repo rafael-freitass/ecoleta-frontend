@@ -1,5 +1,7 @@
-import SelecionarLixo from "./(tabs)/selecionarLixo";
+import { Redirect } from "expo-router";
 
 export default function Index() {
-  return <SelecionarLixo />;
+  return (
+    <Redirect href="/(app)/(tabs)/selecionarLixo" />
+  );
 }

@@ -4,9 +4,9 @@ import * as Location from 'expo-location';
 import { useAssets } from 'expo-asset';
 
 import { useProduct } from "@/context/ProductContext";
-import { gerarMarcadores } from "../../../src/utils/mapUtils";
-import { buscarTodosPontos, buscarPontoPorTipo, Ponto } from "../../../src/api/pontoColeta/pontoColeta";
-import { iconesMarcador } from "../../../src/components/MapMaker/mapMarker";
+import { gerarMarcadores } from "@/utils/mapUtils";
+import { buscarTodosPontos, buscarPontoPorTipo, Ponto } from "@/api/pontoColeta/pontoColeta";
+import { iconesMarcador } from "./components/MapMaker/mapMarker";
 
 export default function Mapa() {
   const [location, setLocation] = useState<Location.LocationObjectCoords | null>(null);

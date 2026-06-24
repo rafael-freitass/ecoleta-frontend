@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import { Map, MapPin, Phone, Clock} from "lucide-react-native";
-import { Ponto } from "../../api/pontoColeta/pontoColeta";
+import { Ponto } from "@/api/pontoColeta/pontoColeta";
 import { style } from "./style";
 
 type Props = {

@@ -1,5 +1,5 @@
 import { View, Text, ScrollView } from "react-native";
-import ProductCard from "@/components/ProductCard";
+import ProductCard from "./components/ProductCard";
 import { products } from "@/utils/products";
 import { useProduct } from "@/context/ProductContext";
 import { style } from "./style";

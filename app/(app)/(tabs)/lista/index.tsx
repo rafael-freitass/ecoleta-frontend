@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { View, Text, ScrollView, TouchableOpacity, Linking } from "react-native";
+import { ScrollView, Linking } from "react-native";
 
 import { useProduct } from "@/context/ProductContext";
 
-import { buscarTodosPontos, buscarPontoPorTipo, Ponto } from "../../../src/api/pontoColeta/pontoColeta";
-import PontoCard from "@/components/PontoCard";
+import { buscarTodosPontos, buscarPontoPorTipo, Ponto } from "@/api/pontoColeta/pontoColeta";
+import PontoCard from "./components/PontoCard";
 import { style } from "./style";
 
 export default function Lista() {
