@@ -1,7 +1,6 @@
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import { router } from "expo-router";
-
 import AdminInput from "../AdminInput/AdminInput";
 import { Ponto } from "@/api/pontoColeta/pontoColeta";
 import { products } from "@/utils/products";
@@ -22,15 +21,12 @@ const tiposPonto = [
   { id: "loja", label: "Loja" }
 ];
 
-// --- FUNÇÃO PARA FORMATAR OS DIAS ---
 function formatarDias(selecionados: string[]) {
   if (!selecionados || selecionados.length === 0) return "";
   if (selecionados.length === 7) return "Todos os dias";
 
-  // 1. Ordena os dias cronologicamente
   const sorted = [...selecionados].sort((a, b) => dias.indexOf(a) - dias.indexOf(b));
 
-  // 2. Agrupa os dias consecutivos
   const groups: string[][] = [];
   let currentGroup: string[] = [sorted[0]];
 
@@ -47,14 +43,79 @@ function formatarDias(selecionados: string[]) {
   }
   groups.push(currentGroup);
 
-  // 3. Formata os agrupamentos
   const formatados = groups.map(group => {
     if (group.length >= 3) return `${group[0]} a ${group[group.length - 1]}`;
     if (group.length === 2) return `${group[0]} e ${group[1]}`;
     return group[0];
   });
 
-  return formatados.join(", "); // Ex: "Seg a Qua, Sex e Sáb"
+  return formatados.join(", ");
+}
+
+function carregarHorario(horario:string){
+  if(!horario){
+    return {
+      dias:["Seg","Sex"],
+      horaInicio:"08",
+      minutoInicio:"00",
+      horaFim:"18",
+      minutoFim:"00"
+    };
+  }
+
+  const partes = horario.split(" das ");
+
+  const textoDias = partes[0];
+  const textoHorario = partes[1];
+
+  let diasSelecionados:string[] = [];
+
+
+  // Todos os dias
+  if(textoDias.includes("Todos")){
+    diasSelecionados = [...dias];
+
+  } 
+  // Intervalo: Seg a Sex
+  else if(textoDias.includes(" a ")){
+
+    const intervalo = textoDias.split(" a ");
+
+    const inicio = dias.indexOf(intervalo[0]);
+    const fim = dias.indexOf(intervalo[1]);
+
+    if(inicio !== -1 && fim !== -1){
+      diasSelecionados = dias.slice(inicio, fim + 1);
+    }
+
+  } 
+  // Casos com vírgula ou "e"
+  else {
+
+    const textoLimpo = textoDias
+      .replace(" e ", ",")
+      .split(",");
+
+    diasSelecionados = textoLimpo.map(d => d.trim());
+
+  }
+
+
+  const horarios = textoHorario?.split(" às ");
+
+  const inicio = horarios?.[0]?.split(":");
+  const fim = horarios?.[1]?.split(":");
+
+
+  return {
+    dias: diasSelecionados,
+
+    horaInicio: inicio?.[0] ?? "08",
+    minutoInicio: inicio?.[1] ?? "00",
+
+    horaFim: fim?.[0] ?? "18",
+    minutoFim: fim?.[1] ?? "00"
+  };
 }
 
 export default function PontoForm({ ponto, onSubmit, loading = false }: Props) {
@@ -74,6 +135,18 @@ export default function PontoForm({ ponto, onSubmit, loading = false }: Props) {
 
   const [tipo, setTipo] = useState(ponto?.tipo_ponto ?? "");
   const [lixos, setLixos] = useState<string[]>(ponto?.tipo_lixo_coletado ?? []);
+
+  useEffect(()=>{
+    if(!ponto) return;
+
+    const horario = carregarHorario(ponto.horario_funcionamento);
+
+    setDiasSelecionados(horario.dias);
+    setHoraInicio(horario.horaInicio);
+    setMinutoInicio(horario.minutoInicio);
+    setHoraFim(horario.horaFim);
+    setMinutoFim(horario.minutoFim);
+  },[ponto]);
 
   function selecionarDia(dia: string) {
     setDiasSelecionados(prev =>
@@ -101,7 +174,6 @@ export default function PontoForm({ ponto, onSubmit, loading = false }: Props) {
   }
 
   async function salvar() {
-    // Aplica a formatação inteligente aqui
     const diasFormatados = formatarDias(diasSelecionados);
 
     await onSubmit({
@@ -199,15 +271,18 @@ export default function PontoForm({ ponto, onSubmit, loading = false }: Props) {
             <Chip
               key={item.id}
               label={item.label}
-              selected={lixos.includes(item.id)}
-              onPress={() => selecionarLixo(item.id)}
+              selected={lixos.includes(item.tipo)}
+              onPress={() => selecionarLixo(item.tipo)}
             />
           ))}
         </View>
 
         <TouchableOpacity style={style.saveButton} onPress={salvar}>
           <Text style={style.saveText}>
-            {loading ? "Criando..." : "Criar"}
+            {
+              loading ? "Salvando..." : 
+              ponto ? "Atualizar" : "Criar"
+            }
           </Text>
         </TouchableOpacity>
 

@@ -71,66 +71,116 @@ export const style = StyleSheet.create({
   },
 
 
-  // =====================
-  // PAINEL
-  // =====================
+// =====================
+// PAINEL
+// =====================
 
-  painel: {
-    flex: 1,
-    backgroundColor: "#F5F7FA",
-    padding: 30,
-  },
+painel: {
+  flex: 1,
+  backgroundColor: "#F5F7FA",
+  padding: 24,
+},
 
-  painelHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 25,
-  },
 
-  painelTitle: {
-    fontSize: 28,
-    fontWeight: "700",
-    color: "#101828",
-  },
+painelHeader: {
+  flexDirection: "row",
+  justifyContent: "space-between",
+  alignItems: "center",
+  marginBottom: 25,
+},
 
-  table: {
-    flex: 1, 
-    backgroundColor: "#FFFFFF",
-    borderRadius: 14,
-    padding: 20,
-    elevation: 3,
-  },
 
-  row: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingVertical: 15,
-    borderBottomWidth: 1,
-    borderColor: "#EAECF0",
-  },
+painelTitle: {
+  fontSize: 28,
+  fontWeight: "700",
+  color: "#101828",
+},
 
-  infoContainer: {
-    flex: 1,
-    marginRight: 20,
-  },
 
-  name: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: "#344054",
-  },
+// botão novo
 
-  info: {
-    fontSize: 14,
-    color: "#667085",
-    marginTop: 4,
-  },
+newButton: {
+  backgroundColor: "#16A34A",
+  paddingHorizontal: 18,
+  paddingVertical: 12,
+  borderRadius: 10,
+  elevation: 3,
+},
 
-  actions: {
-    flexDirection: "row",
-    gap: 10,
-  },
+newButtonText: {
+  color: "#FFFFFF",
+  fontWeight: "700",
+  fontSize: 15,
+},
+
+
+
+table: {
+  flex: 1,
+  backgroundColor: "#FFFFFF",
+  borderRadius: 18,
+  padding: 20,
+  elevation: 4,
+},
+
+
+row: {
+  flexDirection: "row",
+  justifyContent: "space-between",
+  alignItems: "center",
+  paddingVertical: 18,
+  borderBottomWidth: 1,
+  borderColor: "#EAECF0",
+},
+
+
+name: {
+  fontSize: 17,
+  fontWeight: "700",
+  color: "#101828",
+},
+
+
+info: {
+  fontSize: 14,
+  color: "#667085",
+  marginTop: 5,
+},
+
+
+
+actions: {
+  flexDirection: "row",
+  gap: 8,
+},
+
+
+
+editButton: {
+  backgroundColor: "#16A34A",
+  paddingHorizontal: 14,
+  paddingVertical: 9,
+  borderRadius: 8,
+},
+
+
+deleteButton: {
+  backgroundColor: "#FEE2E2",
+  paddingHorizontal: 14,
+  paddingVertical: 9,
+  borderRadius: 8,
+},
+
+
+buttonText: {
+  color: "#FFFFFF",
+  fontWeight: "600",
+},
+
+
+deleteText: {
+  color: "#DC2626",
+  fontWeight: "600",
+},
 
 });

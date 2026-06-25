@@ -37,7 +37,7 @@ export async function criarPonto(ponto: Omit<Ponto,"id">){
 }
 
 export async function atualizarPonto(id:number, ponto:Omit<Ponto,"id">){
-  const response = await api.put(`/pontos-coleta/${id}`, ponto);
+  const response = await api.patch(`/pontos-coleta/${id}`, ponto);
 
   return response.data;
 }

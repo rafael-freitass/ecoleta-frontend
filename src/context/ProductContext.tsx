@@ -8,26 +8,25 @@ type Product = {
 
 type ProductContextType = {
   selectedProduct: Product | null;
+  setSelectedProduct: (product: Product | null) => void;
 
-  setSelectedProduct: (
-    product: Product | null
-  ) => void;
+  quantidadePontos: number;
+  setQuantidadePontos: (quantidade: number) => void;
 };
 
-
-const ProductContext = createContext<ProductContextType | undefined>(
-  undefined
-);
-
+const ProductContext = createContext<ProductContextType | undefined>(undefined);
 
 export function ProductProvider({ children }: { children: React.ReactNode }) {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [quantidadePontos, setQuantidadePontos] = useState(0);
 
   return (
     <ProductContext.Provider
       value={{
         selectedProduct,
-        setSelectedProduct
+        setSelectedProduct,
+        quantidadePontos,
+        setQuantidadePontos
       }}
     >
       {children}
